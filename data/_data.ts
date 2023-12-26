@@ -19,6 +19,7 @@ export interface Festival {
   startDate: string;
   endDate: string;
   styles: string[];
+  url?: string;
 }
 
 export const festivals: Record<string, Festival[]> = {
@@ -27,15 +28,17 @@ export const festivals: Record<string, Festival[]> = {
       name: "Dominican Swag",
       location: "Amsterdam, Netherlands",
       startDate: new Date("2024-01-05").toISOString(),
-      endDate: new Date("2024-01-07").toISOString(),
+      endDate: new Date("2024-01-08").toISOString(),
       styles: ["bachata"],
+      url: "https://dominican-swag.com",
     },
     {
       name: "Amsterdam International Salsa Festival",
       location: "Amsterdam, Netherlands",
-      startDate: new Date("2024-01-25").toISOString(),
+      startDate: new Date("2024-01-26").toISOString(),
       endDate: new Date("2024-01-28").toISOString(),
       styles: ["salsa", "bachata"],
+      url: "https://www.extremos.nl/amsterdam-int-salsa-festival/",
     },
   ],
   february: [],

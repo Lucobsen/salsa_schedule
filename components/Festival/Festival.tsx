@@ -1,5 +1,5 @@
 import { Festival } from "@/data/_data";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 
 const FestivalItem = ({
@@ -8,6 +8,7 @@ const FestivalItem = ({
   location,
   startDate,
   endDate,
+  url,
 }: Festival) => {
   return (
     <Box
@@ -23,7 +24,14 @@ const FestivalItem = ({
         textTransform: "uppercase",
       }}
     >
-      <Typography variant="h6">{name}</Typography>
+      {url ? (
+        <Link variant="h6" href={url} target="_blank" color="#fff">
+          {name}
+        </Link>
+      ) : (
+        <Typography variant="h6">{name}</Typography>
+      )}
+
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Typography variant="caption">Location: {location}</Typography>
@@ -32,9 +40,9 @@ const FestivalItem = ({
         <Grid item xs={12} sm={6}>
           <Stack direction="row" spacing={0.5}>
             <Typography variant="caption">Styles:</Typography>
-            {styles.map((style) => (
+            {styles.map((style, index) => (
               <Typography key={`${name}-${style}`} variant="caption">
-                {style}
+                {`${style}${index < styles.length - 1 ? "," : ""}`}
               </Typography>
             ))}
           </Stack>
