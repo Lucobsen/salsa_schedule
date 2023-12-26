@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar sx={{ borderBottom: "2px solid #fff" }}>
           <Typography variant="h6">The Dance Directory</Typography>
         </Toolbar>
       </AppBar>
