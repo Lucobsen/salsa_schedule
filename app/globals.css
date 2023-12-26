@@ -73,11 +73,6 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
 
 html,
 body {
@@ -95,10 +90,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 @media (prefers-color-scheme: dark) {
   html {
