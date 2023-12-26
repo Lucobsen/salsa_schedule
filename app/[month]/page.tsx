@@ -1,6 +1,6 @@
 import FestivalItem from "@/components/Festival/Festival";
 import { festivals } from "@/data/_data";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 
 interface MonthProps {
   params: {
@@ -16,12 +16,9 @@ const Month = ({ params }: MonthProps) => {
 
   return (
     <Container sx={{ mt: 10 }}>
-      {monthFestivals.length === 0 && (
-        <Typography>No festivals found</Typography>
-      )}
-
-      {monthFestivals.length > 0 &&
-        monthFestivals.map((fest) => <FestivalItem {...fest} />)}
+      {monthFestivals.map((fest) => (
+        <FestivalItem key={fest.name} {...fest} />
+      ))}
     </Container>
   );
 };

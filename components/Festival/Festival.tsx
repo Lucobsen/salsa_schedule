@@ -12,7 +12,6 @@ const FestivalItem = ({
 }: Festival) => {
   return (
     <Box
-      key={name}
       sx={{
         height: "fit-content",
         backgroundColor: "#1976d2",
