@@ -1,5 +1,5 @@
 import { festivals } from "@/data/_data";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 
 interface MonthProps {
@@ -36,11 +36,14 @@ const Month = ({ params }: MonthProps) => {
             }}
           >
             <Typography variant="h6">{fest.name}</Typography>
-            <Stack direction="row" spacing={2}>
-              <Stack>
+            <Grid container>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption">
                   Location: {fest.location}
                 </Typography>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
                 <Stack direction="row" spacing={0.5}>
                   <Typography variant="caption">Styles:</Typography>
                   {fest.styles.map((style) => (
@@ -49,17 +52,20 @@ const Month = ({ params }: MonthProps) => {
                     </Typography>
                   ))}
                 </Stack>
-              </Stack>
+              </Grid>
 
-              <Stack>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption">
                   Start Date: {format(fest.startDate, "dd-MM-yyyy")}
                 </Typography>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption">
                   End Date: {format(fest.endDate, "dd-MM-yyyy")}
                 </Typography>
-              </Stack>
-            </Stack>
+              </Grid>
+            </Grid>
           </Box>
         ))}
     </Container>
