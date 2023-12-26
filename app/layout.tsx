@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import NavBar from "@/components/NavBar/NavBar";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <NavBar />
           {children}
+          <Analytics />
         </AppRouterCacheProvider>
       </body>
     </html>
