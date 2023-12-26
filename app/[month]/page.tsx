@@ -10,7 +10,9 @@ interface MonthProps {
 
 const Month = ({ params }: MonthProps) => {
   const { month } = params;
-  const monthFestivals = festivals.filter((fest) => fest.month === month);
+
+  //! TODO: sort by start & end dates
+  const monthFestivals = festivals[month];
 
   return (
     <Container sx={{ mt: 10 }}>
@@ -18,7 +20,7 @@ const Month = ({ params }: MonthProps) => {
         <Typography>No festivals found</Typography>
       )}
 
-      {monthFestivals &&
+      {monthFestivals.length > 0 &&
         monthFestivals.map((fest) => (
           <Box
             key={fest.name}
