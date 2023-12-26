@@ -7,7 +7,7 @@ interface MonthButtonProps {
 }
 
 const MonthButton = ({ month, count }: MonthButtonProps) => (
-  <Grid item xs={12} sm={3} key={month} sx={{ height: 50 }}>
+  <Grid item xs={12} sm={3} sx={{ height: 50 }}>
     <Link
       tabIndex={count === 0 ? -1 : undefined}
       aria-disabled={count === 0}

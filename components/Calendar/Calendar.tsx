@@ -5,7 +5,7 @@ import MonthButton from "../MonthButton/MonthButton";
 const Calendar = () => (
   <Grid container rowGap={2} columnGap={2} justifyContent="center">
     {months.map((month) => (
-      <MonthButton month={month} count={festivals[month].length} />
+      <MonthButton key={month} month={month} count={festivals[month].length} />
     ))}
   </Grid>
 );
