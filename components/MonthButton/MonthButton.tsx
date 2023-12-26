@@ -13,7 +13,6 @@ const MonthButton = ({ month, count }: MonthButtonProps) => (
       aria-disabled={count === 0}
       style={{
         opacity: count === 0 ? 0.5 : 1,
-        cursor: "pointer",
         pointerEvents: count === 0 ? "none" : "all",
         alignItems: "center",
         justifyContent: "center",
