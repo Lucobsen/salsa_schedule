@@ -39,12 +39,9 @@ const FestivalItem = ({
 
         <Grid item xs={12} sm={6}>
           <Stack direction="row" spacing={0.5}>
-            <Typography variant="caption">Styles:</Typography>
-            {styles.map((style, index) => (
-              <Typography key={`${name}-${style}`} variant="caption">
-                {`${style}${index < styles.length - 1 ? "," : ""}`}
-              </Typography>
-            ))}
+            <Typography variant="caption">
+              Styles: {styles.join(",")}
+            </Typography>
           </Stack>
         </Grid>
 
