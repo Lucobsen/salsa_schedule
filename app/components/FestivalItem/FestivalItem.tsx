@@ -40,7 +40,7 @@ const FestivalItem = ({
         <Grid item xs={12} sm={6}>
           <Stack direction="row" spacing={0.5}>
             <Typography variant="caption">
-              Styles: {styles.join(",")}
+              Styles: {styles.join(", ")}
             </Typography>
           </Stack>
         </Grid>
