@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
-import FestivalItem from "@/components/Festival/Festival";
-import { festivals } from "@/data/_data";
-import { getFestivals } from "./_actions";
+import FestivalItem from "@/app/components/FestivalItem/FestivalItem";
+import { getFestivals } from "./lib/actions";
+import { festivals } from "./lib/data";
 
 const Home = async () => {
   await getFestivals();

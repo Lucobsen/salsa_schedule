@@ -1,6 +1,6 @@
-import { festivals } from "@/data/_data";
 import { kv } from "@vercel/kv";
 import { NextResponse } from "next/server";
+import { festivals } from "../lib/data";
 
 const FESTIVAL_KEY = "festivals";
 

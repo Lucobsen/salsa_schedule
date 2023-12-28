@@ -1,4 +1,4 @@
-import { Festival } from "@/data/_data";
+import { Festival } from "@/app/lib/data";
 import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 
