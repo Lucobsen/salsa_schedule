@@ -1,6 +1,6 @@
 "use server";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://dance-directory.vercel.app/api";
 
 export async function addFestival() {
   const response = await fetch(API_URL, {
