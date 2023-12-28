@@ -1,7 +1,7 @@
 "use client";
 
 import { addFestival, getFestivals } from "@/app/actions";
-import { AppBar, Toolbar, Box, Fab } from "@mui/material";
+import { AppBar, Toolbar, Box, Fab, Stack } from "@mui/material";
 import Link from "next/link";
 
 const NavBar = () => {
@@ -20,23 +20,25 @@ const NavBar = () => {
           >
             The Dance Directory
           </Link>
-          <Fab
-            variant="extended"
-            sx={{ textTransform: "none" }}
-            onClick={async () => addFestival()}
-          >
-            Add Festival
-          </Fab>
-          <Fab
-            variant="extended"
-            sx={{ textTransform: "none" }}
-            onClick={async () => {
-              const fests = await getFestivals();
-              window.alert(fests);
-            }}
-          >
-            Get Festivals
-          </Fab>
+          <Stack direction="row" spacing={1}>
+            <Fab
+              variant="extended"
+              sx={{ textTransform: "none" }}
+              onClick={async () => addFestival()}
+            >
+              Add Festival
+            </Fab>
+            <Fab
+              variant="extended"
+              sx={{ textTransform: "none" }}
+              onClick={async () => {
+                const fests = await getFestivals();
+                window.alert(fests);
+              }}
+            >
+              Get Festivals
+            </Fab>
+          </Stack>
         </Toolbar>
       </AppBar>
     </Box>
