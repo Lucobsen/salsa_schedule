@@ -21,6 +21,7 @@ const FestivalItem = ({
         color: "#fff",
         p: 2,
         textTransform: "uppercase",
+        width: "100%",
       }}
     >
       {url ? (
