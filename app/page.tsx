@@ -1,11 +1,8 @@
 import styles from "./page.module.css";
 import FestivalItem from "@/app/components/FestivalItem/FestivalItem";
-import { getFestivals } from "./lib/actions";
 import { festivals } from "./lib/data";
 
-const Home = async () => {
-  await getFestivals();
-
+const Home = () => {
   return (
     <main className={styles.main}>
       {festivals.map((fest) => (
