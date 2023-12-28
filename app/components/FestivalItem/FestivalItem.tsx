@@ -47,13 +47,13 @@ const FestivalItem = ({
 
         <Grid item xs={12} sm={6}>
           <Typography variant="caption">
-            Start Date: {format(startDate, "dd-MM-yyyy")}
+            Start Date: {format(startDate, "do MMM yyyy")}
           </Typography>
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <Typography variant="caption">
-            End Date: {format(endDate, "dd-MM-yyyy")}
+            End Date: {format(endDate, "do MMM yyyy")}
           </Typography>
         </Grid>
       </Grid>
