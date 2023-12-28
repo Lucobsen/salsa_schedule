@@ -1,10 +1,13 @@
-import Calendar from "@/components/Calendar/Calendar";
 import styles from "./page.module.css";
+import FestivalItem from "@/components/Festival/Festival";
+import { festivals } from "@/data/_data";
 
 const Home = () => {
   return (
     <main className={styles.main}>
-      <Calendar />
+      {festivals.map((fest) => (
+        <FestivalItem key={fest.name} {...fest} />
+      ))}
     </main>
   );
 };
