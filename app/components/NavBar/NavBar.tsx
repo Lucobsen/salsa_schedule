@@ -1,6 +1,3 @@
-"use client";
-
-import { addFestival, getFestivals } from "@/app/lib/actions";
 import { AppBar, Toolbar, Box, Fab, Stack } from "@mui/material";
 import Link from "next/link";
 
@@ -20,7 +17,7 @@ const NavBar = () => {
           >
             The Dance Directory
           </Link>
-          <Stack direction="row" spacing={1}>
+          {/* <Stack direction="row" spacing={1}>
             <Fab
               variant="extended"
               sx={{ textTransform: "none" }}
@@ -38,7 +35,7 @@ const NavBar = () => {
             >
               Get Festivals
             </Fab>
-          </Stack>
+          </Stack> */}
         </Toolbar>
       </AppBar>
     </Box>
