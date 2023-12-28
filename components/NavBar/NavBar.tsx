@@ -1,6 +1,6 @@
 "use client";
 
-import { addFestival, getFestivals } from "@/app/actions";
+import { addFestival, getFestivals } from "@/app/_actions";
 import { AppBar, Toolbar, Box, Fab, Stack } from "@mui/material";
 import Link from "next/link";
 
