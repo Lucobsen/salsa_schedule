@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
-import FestivalItem from "@/components/Festival/Festival";
-import { festivals } from "@/data/_data";
+import FestivalItem from "@/app/components/FestivalItem/FestivalItem";
+import { festivals } from "./lib/data";
 
 const Home = () => {
   return (
