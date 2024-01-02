@@ -12,11 +12,11 @@ export interface Festival {
 export const getFestivals = async () => {
   const response = await fetch(`${process.env.KV_REST_API_URL}/get/festivals`, {
     method: "GET",
-    cache: "no-cache",
     headers: {
       ContentType: "application/json",
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
     },
+    cache: "no-cache",
   });
 
   if (!response.ok) {
@@ -37,16 +37,16 @@ export const getFestivals = async () => {
   return { festivals: sortedFestivals } as const;
 };
 
-export const addFestival = async (newFestival: Festival) => {
+export const addFestival = async (festivals: Festival[]) => {
   const { status, statusText, ok } = await fetch(
-    `${process.env.KV_REST_API_URL}/sadd/festivals`,
+    `${process.env.KV_REST_API_URL}/set/festivals`,
     {
       headers: {
         ContentType: "application/json",
         Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
       },
       method: "POST",
-      body: JSON.stringify(newFestival),
+      body: JSON.stringify(festivals),
       cache: "no-cache",
     }
   );

@@ -1,4 +1,4 @@
-import { Festival, addFestival } from "@/app/lib/actions";
+import { Festival, addFestival, getFestivals } from "@/app/lib/actions";
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ const FESTIVAL_LOCATION_KEY = "festival-location";
 const FESTIVAL_STYLES_KEY = "festival-styles";
 const FESTIVAL_START_DATE_KEY = "festival-start-date";
 const FESTIVAL_END_DATE_KEY = "festival-end-date";
+const MASTER_PASSWORD_KEY = "master-password-key";
 
 interface DialogProps {
   showDialog: boolean;
@@ -29,8 +30,10 @@ const validateForm = (formData: FormData): Festival | null => {
   const styles = formData.get(FESTIVAL_STYLES_KEY) as string | null;
   const startDate = formData.get(FESTIVAL_START_DATE_KEY) as string | null;
   const endDate = formData.get(FESTIVAL_END_DATE_KEY) as string | null;
+  const masterPassword = formData.get(MASTER_PASSWORD_KEY) as string | null;
 
   const isValid =
+    masterPassword !== "L00k3y_B0y_1960" &&
     name !== null &&
     url !== null &&
     location !== null &&
@@ -53,7 +56,11 @@ const validateForm = (formData: FormData): Festival | null => {
 
 const validateAndAddFestival = async (formData: FormData) => {
   const data = validateForm(formData);
-  if (data !== null) await addFestival(data);
+
+  if (data === null) return;
+
+  const { festivals } = await getFestivals();
+  await addFestival([...festivals, data]);
 };
 
 const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
@@ -65,7 +72,14 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
     <DialogTitle>Enter New Festival Info</DialogTitle>
 
     <Container sx={{ pb: 3 }}>
-      <Box component="form" autoComplete="off" action={validateAndAddFestival}>
+      <Box
+        component="form"
+        autoComplete="off"
+        action={(formData: FormData) => {
+          validateAndAddFestival(formData);
+          setShowDialog(false);
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <InputLabel htmlFor={FESTIVAL_NAME_KEY}>Name</InputLabel>
@@ -89,7 +103,7 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="url"
-              value="http://luke-test.com"
+              value="https://www.luke-test.com/"
             />
           </Grid>
 
@@ -147,9 +161,23 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
             />
           </Grid>
 
+          <Grid item xs={6}>
+            <InputLabel htmlFor={MASTER_PASSWORD_KEY}>
+              Master Password
+            </InputLabel>
+            <OutlinedInput
+              name={MASTER_PASSWORD_KEY}
+              fullWidth
+              id={MASTER_PASSWORD_KEY}
+              size="small"
+              required
+              type="text"
+            />
+          </Grid>
+
           <Grid
             item
-            xs={6}
+            xs={12}
             display="flex"
             alignItems="end"
             justifyContent="flex-end"
