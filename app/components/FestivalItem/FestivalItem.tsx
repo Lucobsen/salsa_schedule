@@ -23,13 +23,9 @@ const FestivalItem = ({
       width: "100%",
     }}
   >
-    {url ? (
-      <Link variant="h6" href={url} target="_blank" color="#fff">
-        {name}
-      </Link>
-    ) : (
-      <Typography variant="h6">{name}</Typography>
-    )}
+    <Link variant="h6" href={url} target="_blank" color="#fff">
+      {name}
+    </Link>
 
     <Grid container>
       <Grid item xs={12} sm={6}>
