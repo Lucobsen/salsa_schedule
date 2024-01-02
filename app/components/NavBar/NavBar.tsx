@@ -1,7 +1,4 @@
-"use client";
-
-import { addFestival, getFestivals } from "@/app/lib/actions";
-import { AppBar, Toolbar, Box, Typography, Fab, Stack } from "@mui/material";
+import { AppBar, Toolbar, Box, Typography } from "@mui/material";
 
 const NavBar = () => (
   <Box sx={{ flexGrow: 1 }}>
@@ -9,31 +6,11 @@ const NavBar = () => (
       <Toolbar
         sx={{
           borderBottom: "2px solid #fff",
-          justifyContent: "space-between",
         }}
       >
         <Typography variant="h6" style={{ color: "#fff" }}>
           The Dance Directory
         </Typography>
-        <Stack direction="row" spacing={1}>
-          <Fab
-            variant="extended"
-            sx={{ textTransform: "none" }}
-            onClick={async () => addFestival()}
-          >
-            Add Festival
-          </Fab>
-          <Fab
-            variant="extended"
-            sx={{ textTransform: "none" }}
-            onClick={async () => {
-              const fests = await getFestivals();
-              window.alert(fests.festivals);
-            }}
-          >
-            Get Festivals
-          </Fab>
-        </Stack>
       </Toolbar>
     </AppBar>
   </Box>
