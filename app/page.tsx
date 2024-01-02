@@ -1,12 +1,17 @@
 import styles from "./page.module.css";
-import FestivalItem from "@/app/components/FestivalItem/FestivalItem";
-import { festivals } from "./lib/data";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import Loader from "./loading";
+import Errorer from "./error";
+import FestivalList from "./components/FestivalList/FestivalList";
 
 const Home = () => (
   <main className={styles.main}>
-    {festivals.map((fest) => (
-      <FestivalItem key={fest.name} {...fest} />
-    ))}
+    <Suspense fallback={<Loader />}>
+      <ErrorBoundary fallback={<Errorer />}>
+        <FestivalList />
+      </ErrorBoundary>
+    </Suspense>
   </main>
 );
 
