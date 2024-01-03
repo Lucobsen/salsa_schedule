@@ -3,6 +3,7 @@
 import { AppBar, Toolbar, Box, Typography, Fab, Stack } from "@mui/material";
 import { useState } from "react";
 import AddFestivalDialog from "../AddFestivalDialog/AddFestivalDialog";
+import AddIcon from "@mui/icons-material/Add";
 
 const NavBar = () => {
   const [showDialog, setShowDialog] = useState(false);
@@ -21,12 +22,8 @@ const NavBar = () => {
               The Dance Directory
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Fab
-                variant="extended"
-                sx={{ textTransform: "none" }}
-                onClick={() => setShowDialog(true)}
-              >
-                Add Festival
+              <Fab size="small" onClick={() => setShowDialog(true)}>
+                <AddIcon />
               </Fab>
             </Stack>
           </Toolbar>
