@@ -29,16 +29,14 @@ export const getFestivals = async () => {
 
   const festivals = JSON.parse(data.result) as Festival[];
 
-  const sortedFestivals = festivals.sort(
+  return festivals.sort(
     (festA, festB) =>
       new Date(festA.startDate).getTime() - new Date(festB.startDate).getTime()
   );
-
-  return { festivals: sortedFestivals } as const;
 };
 
-export const addFestival = async (festivals: Festival[]) => {
-  const { status, statusText, ok } = await fetch(
+export const setFestivals = async (festivals: Festival[]) => {
+  const { ok, status, statusText } = await fetch(
     `${process.env.KV_REST_API_URL}/set/festivals`,
     {
       headers: {

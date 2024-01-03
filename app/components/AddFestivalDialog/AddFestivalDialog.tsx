@@ -1,4 +1,4 @@
-import { Festival, addFestival, getFestivals } from "@/app/lib/actions";
+import { Festival, setFestivals, getFestivals } from "@/app/lib/actions";
 import {
   Box,
   Button,
@@ -33,7 +33,8 @@ const validateForm = (formData: FormData): Festival | null => {
   const masterPassword = formData.get(MASTER_PASSWORD_KEY) as string | null;
 
   const isValid =
-    masterPassword !== "L00k3y_B0y_1960" &&
+    masterPassword &&
+    masterPassword === "1960" &&
     name !== null &&
     url !== null &&
     location !== null &&
@@ -59,8 +60,8 @@ const validateAndAddFestival = async (formData: FormData) => {
 
   if (data === null) return;
 
-  const { festivals } = await getFestivals();
-  await addFestival([...festivals, data]);
+  const festivals = await getFestivals();
+  await setFestivals([...festivals, data]);
 };
 
 const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
@@ -170,7 +171,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               fullWidth
               id={MASTER_PASSWORD_KEY}
               size="small"
-              required
               type="text"
             />
           </Grid>

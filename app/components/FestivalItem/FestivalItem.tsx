@@ -2,6 +2,7 @@ import { Festival } from "@/app/lib/actions";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
 import Link from "next/link";
+import DeleteFestivalButton from "../DeleteFestivalButton/DeleteFestivalButton";
 
 const FestivalItem = ({
   styles,
@@ -28,6 +29,7 @@ const FestivalItem = ({
       },
     }}
   >
+    <DeleteFestivalButton name={name} />
     <Link
       href={url}
       target="_blank"
