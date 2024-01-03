@@ -22,7 +22,11 @@ const NavBar = () => {
               The Dance Directory
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Fab size="small" onClick={() => setShowDialog(true)}>
+              <Fab
+                size="small"
+                onClick={() => setShowDialog(true)}
+                title="add festival"
+              >
                 <AddIcon />
               </Fab>
             </Stack>
