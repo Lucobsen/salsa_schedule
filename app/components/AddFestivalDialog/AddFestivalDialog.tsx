@@ -91,7 +91,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="text"
-              value="Luke's Test"
             />
           </Grid>
 
@@ -104,7 +103,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="url"
-              value="https://www.luke-test.com/"
             />
           </Grid>
 
@@ -117,7 +115,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               required
               fullWidth
               type="text"
-              value="Amsterdam, Netherlands"
             />
           </Grid>
 
@@ -132,7 +129,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="date"
-              value="2024-10-10"
             />
           </Grid>
 
@@ -145,7 +141,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="date"
-              value="2024-10-15"
             />
           </Grid>
 
@@ -158,7 +153,6 @@ const AddFestivalDialog = ({ showDialog, setShowDialog }: DialogProps) => (
               size="small"
               required
               type="text"
-              value="salsa"
             />
           </Grid>
 
