@@ -6,17 +6,17 @@ export interface Festival {
   startDate: string;
   endDate: string;
   styles: string[];
-  url?: string;
+  url: string;
 }
 
 export const getFestivals = async () => {
   const response = await fetch(`${process.env.KV_REST_API_URL}/get/festivals`, {
     method: "GET",
-    cache: "no-cache",
     headers: {
       ContentType: "application/json",
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
     },
+    cache: "no-cache",
   });
 
   if (!response.ok) {
@@ -27,21 +27,29 @@ export const getFestivals = async () => {
     result: string;
   } = await response.json();
 
-  return { festivals: JSON.parse(data.result) as Festival[] } as const;
+  const festivals = JSON.parse(data.result) as Festival[];
+
+  return festivals.sort(
+    (festA, festB) =>
+      new Date(festA.startDate).getTime() - new Date(festB.startDate).getTime()
+  );
 };
 
-export const addFestival = async () => {
-  const response = await fetch(`${process.env.KV_REST_API_URL}/set/festivals`, {
-    headers: {
-      ContentType: "application/json",
-      Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
-    },
-    method: "POST",
-    body: JSON.stringify([]),
-    cache: "no-cache",
-  });
+export const setFestivals = async (festivals: Festival[]) => {
+  const { ok, status, statusText } = await fetch(
+    `${process.env.KV_REST_API_URL}/set/festivals`,
+    {
+      headers: {
+        ContentType: "application/json",
+        Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
+      },
+      method: "POST",
+      body: JSON.stringify(festivals),
+      cache: "no-cache",
+    }
+  );
 
-  if (!response.ok) {
-    throw new Error("Failed to add festival");
+  if (!ok) {
+    throw new Error(`${status}: Failed to add festival - ${statusText}`);
   }
 };

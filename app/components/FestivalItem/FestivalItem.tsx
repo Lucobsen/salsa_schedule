@@ -1,6 +1,8 @@
 import { Festival } from "@/app/lib/actions";
-import { Box, Grid, Link, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
+import Link from "next/link";
+import DeleteFestivalButton from "../DeleteFestivalButton/DeleteFestivalButton";
 
 const FestivalItem = ({
   styles,
@@ -21,39 +23,47 @@ const FestivalItem = ({
       p: 2,
       textTransform: "uppercase",
       width: "100%",
+
+      "&:hover": {
+        boxShadow: "0 0 10px 2px #fff",
+      },
     }}
   >
-    {url ? (
-      <Link variant="h6" href={url} target="_blank" color="#fff">
+    <DeleteFestivalButton name={name} />
+    <Link
+      href={url}
+      target="_blank"
+      style={{ color: "#fff", textDecoration: "none" }}
+    >
+      <Typography color="inherit" variant="h6">
         {name}
-      </Link>
-    ) : (
-      <Typography variant="h6">{name}</Typography>
-    )}
+      </Typography>
+      <Grid container color="inherit">
+        <Grid item xs={12} sm={6}>
+          <Typography variant="caption">Location: {location}</Typography>
+        </Grid>
 
-    <Grid container>
-      <Grid item xs={12} sm={6}>
-        <Typography variant="caption">Location: {location}</Typography>
-      </Grid>
+        <Grid item xs={12} sm={6}>
+          <Stack direction="row" spacing={0.5}>
+            <Typography variant="caption">
+              Styles: {styles.join(", ")}
+            </Typography>
+          </Stack>
+        </Grid>
 
-      <Grid item xs={12} sm={6}>
-        <Stack direction="row" spacing={0.5}>
-          <Typography variant="caption">Styles: {styles.join(", ")}</Typography>
-        </Stack>
-      </Grid>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="caption">
+            Start Date: {format(startDate, "do MMM yyyy")}
+          </Typography>
+        </Grid>
 
-      <Grid item xs={12} sm={6}>
-        <Typography variant="caption">
-          Start Date: {format(startDate, "do MMM yyyy")}
-        </Typography>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="caption">
+            End Date: {format(endDate, "do MMM yyyy")}
+          </Typography>
+        </Grid>
       </Grid>
-
-      <Grid item xs={12} sm={6}>
-        <Typography variant="caption">
-          End Date: {format(endDate, "do MMM yyyy")}
-        </Typography>
-      </Grid>
-    </Grid>
+    </Link>
   </Box>
 );
 
