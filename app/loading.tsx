@@ -1,15 +1,17 @@
-import { CircularProgress, Container } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 
 const Loader = () => (
-  <Container
-    sx={{
-      pt: "10rem",
-      display: "flex",
-      justifyContent: "center",
-    }}
-  >
-    <CircularProgress />
-  </Container>
+  <Stack spacing={4} alignItems="center">
+    {Array.from(Array(4).keys()).map((item) => (
+      <Skeleton
+        key={item}
+        sx={{ backgroundColor: "rgba(100, 100, 100, 0.3)" }}
+        variant="rounded"
+        height={126}
+        width="80vw"
+      />
+    ))}
+  </Stack>
 );
 
 export default Loader;

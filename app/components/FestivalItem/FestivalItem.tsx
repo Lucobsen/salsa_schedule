@@ -16,7 +16,6 @@ const FestivalItem = ({
     sx={{
       height: "fit-content",
       backgroundColor: "#1976d2",
-      mb: 4,
       border: "2px solid #fff",
       borderRadius: 2,
       color: "#fff",

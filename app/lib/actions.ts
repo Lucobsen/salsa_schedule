@@ -1,5 +1,7 @@
 "use server";
 
+import { isAfter } from "date-fns";
+
 export interface Festival {
   name: string;
   location: string;
@@ -29,10 +31,19 @@ export const getFestivals = async () => {
 
   const festivals = JSON.parse(data.result) as Festival[];
 
-  return festivals.sort(
+  // TODO: move this sorting to the backend
+  const sortedFestivals = festivals.sort(
     (festA, festB) =>
       new Date(festA.startDate).getTime() - new Date(festB.startDate).getTime()
   );
+
+  // TODO: move this filtering to the backend
+  return sortedFestivals.filter((festival) => {
+    const now = Date.now();
+    const endDate = new Date(festival.endDate).getTime();
+
+    return isAfter(endDate, now);
+  });
 };
 
 export const setFestivals = async (festivals: Festival[]) => {
