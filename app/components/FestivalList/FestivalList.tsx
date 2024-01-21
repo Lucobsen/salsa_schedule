@@ -1,5 +1,6 @@
 import { getFestivals } from "@/app/lib/actions";
 import FestivalItem from "../FestivalItem/FestivalItem";
+import { Skeleton, Stack } from "@mui/material";
 
 const FestivalList = async () => {
   const festivals = await getFestivals();
@@ -8,7 +9,11 @@ const FestivalList = async () => {
     <FestivalItem key={fest.name} {...fest} />
   ));
 
-  return <>{items}</>;
+  return (
+    <Stack spacing={4} alignItems="center">
+      {items}
+    </Stack>
+  );
 };
 
 export default FestivalList;
