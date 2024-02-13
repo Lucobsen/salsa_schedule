@@ -1,10 +1,11 @@
 import {
   Typography,
   Card,
-  CardContent,
   CardActions,
   Checkbox,
   FormControlLabel,
+  Stack,
+  Divider,
 } from "@mui/material";
 
 interface FestivalFiltersProps {
@@ -15,6 +16,7 @@ const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
   <Card
     sx={{
       minHeight: 100,
+      maxHeight: 300,
       maxWidth: "100%",
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
@@ -24,28 +26,100 @@ const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
     }}
     raised
   >
-    <CardContent sx={{ ml: 1, pb: 0 }}>
-      <Typography sx={{ color: "#fff" }} variant="h6">
-        Festival Filters
-      </Typography>
-    </CardContent>
-
     <CardActions sx={{ ml: 1.5 }}>
-      <FormControlLabel
-        sx={{ color: "#fff" }}
-        label="Kizomba"
-        control={
-          <Checkbox
-            sx={{
-              color: "#fff",
-              "&.Mui-checked": {
+      <Stack>
+        <Typography variant="h6" sx={{ color: "#fff" }}>
+          Dance Styles
+        </Typography>
+        <FormControlLabel
+          sx={{ color: "#fff" }}
+          label="Salsa"
+          control={
+            <Checkbox
+              sx={{
                 color: "#fff",
-              },
-            }}
-            onChange={() => filterFestivals("kizomba")}
-          />
-        }
+                "&.Mui-checked": {
+                  color: "#fff",
+                },
+              }}
+              onChange={() => filterFestivals("salsa")}
+            />
+          }
+        />
+        <FormControlLabel
+          sx={{ color: "#fff" }}
+          label="Bachata"
+          control={
+            <Checkbox
+              sx={{
+                color: "#fff",
+                "&.Mui-checked": {
+                  color: "#fff",
+                },
+              }}
+              onChange={() => filterFestivals("bachata")}
+            />
+          }
+        />
+        <FormControlLabel
+          sx={{ color: "#fff" }}
+          label="Kizomba"
+          control={
+            <Checkbox
+              sx={{
+                color: "#fff",
+                "&.Mui-checked": {
+                  color: "#fff",
+                },
+              }}
+              onChange={() => filterFestivals("kizomba")}
+            />
+          }
+        />
+      </Stack>
+
+      <Divider
+        orientation="vertical"
+        variant="middle"
+        flexItem
+        sx={{ borderColor: "#fff" }}
       />
+
+      <Stack>
+        <Typography variant="h6" sx={{ color: "#fff" }}>
+          Months
+        </Typography>
+        <FormControlLabel
+          sx={{ color: "#fff" }}
+          label="March"
+          control={
+            <Checkbox
+              sx={{
+                color: "#fff",
+                "&.Mui-checked": {
+                  color: "#fff",
+                },
+              }}
+              onChange={() => filterFestivals("march")}
+            />
+          }
+        />
+        <FormControlLabel
+          sx={{ color: "#fff" }}
+          label="April"
+          control={
+            <Checkbox
+              sx={{
+                color: "#fff",
+                "&.Mui-checked": {
+                  color: "#fff",
+                },
+              }}
+              onChange={() => filterFestivals("april")}
+            />
+          }
+        />
+      </Stack>
     </CardActions>
   </Card>
 );
