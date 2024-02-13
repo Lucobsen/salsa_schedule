@@ -1,6 +1,6 @@
 import { getFestivals } from "@/app/lib/actions";
 import FestivalItem from "../FestivalItem/FestivalItem";
-import { Skeleton, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 const FestivalList = async () => {
   const festivals = await getFestivals();
