@@ -12,6 +12,31 @@ interface FestivalFiltersProps {
   filterFestivals: (value: string) => void;
 }
 
+const CheckboxItem = ({
+  label,
+  onCheckedChange,
+}: {
+  label: string;
+  onCheckedChange: () => void;
+}) => (
+  <FormControlLabel
+    sx={{ color: "#fff" }}
+    label={label}
+    control={
+      <Checkbox
+        size="small"
+        sx={{
+          color: "#fff",
+          "&.Mui-checked": {
+            color: "#fff",
+          },
+        }}
+        onChange={onCheckedChange}
+      />
+    }
+  />
+);
+
 const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
   <Card
     sx={{
@@ -28,53 +53,18 @@ const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
   >
     <CardActions sx={{ ml: 1.5 }}>
       <Stack>
-        <Typography variant="h6" sx={{ color: "#fff" }}>
-          Dance Styles
-        </Typography>
-        <FormControlLabel
-          sx={{ color: "#fff" }}
+        <Typography sx={{ color: "#fff" }}>Dance Styles</Typography>
+        <CheckboxItem
           label="Salsa"
-          control={
-            <Checkbox
-              sx={{
-                color: "#fff",
-                "&.Mui-checked": {
-                  color: "#fff",
-                },
-              }}
-              onChange={() => filterFestivals("salsa")}
-            />
-          }
+          onCheckedChange={() => filterFestivals("salsa")}
         />
-        <FormControlLabel
-          sx={{ color: "#fff" }}
+        <CheckboxItem
           label="Bachata"
-          control={
-            <Checkbox
-              sx={{
-                color: "#fff",
-                "&.Mui-checked": {
-                  color: "#fff",
-                },
-              }}
-              onChange={() => filterFestivals("bachata")}
-            />
-          }
+          onCheckedChange={() => filterFestivals("bachata")}
         />
-        <FormControlLabel
-          sx={{ color: "#fff" }}
+        <CheckboxItem
           label="Kizomba"
-          control={
-            <Checkbox
-              sx={{
-                color: "#fff",
-                "&.Mui-checked": {
-                  color: "#fff",
-                },
-              }}
-              onChange={() => filterFestivals("kizomba")}
-            />
-          }
+          onCheckedChange={() => filterFestivals("kizomba")}
         />
       </Stack>
 
@@ -86,38 +76,18 @@ const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
       />
 
       <Stack>
-        <Typography variant="h6" sx={{ color: "#fff" }}>
-          Months
-        </Typography>
-        <FormControlLabel
-          sx={{ color: "#fff" }}
+        <Typography sx={{ color: "#fff" }}>Months</Typography>
+        <CheckboxItem
           label="March"
-          control={
-            <Checkbox
-              sx={{
-                color: "#fff",
-                "&.Mui-checked": {
-                  color: "#fff",
-                },
-              }}
-              onChange={() => filterFestivals("march")}
-            />
-          }
+          onCheckedChange={() => filterFestivals("march")}
         />
-        <FormControlLabel
-          sx={{ color: "#fff" }}
+        <CheckboxItem
           label="April"
-          control={
-            <Checkbox
-              sx={{
-                color: "#fff",
-                "&.Mui-checked": {
-                  color: "#fff",
-                },
-              }}
-              onChange={() => filterFestivals("april")}
-            />
-          }
+          onCheckedChange={() => filterFestivals("april")}
+        />
+        <CheckboxItem
+          label="May"
+          onCheckedChange={() => filterFestivals("may")}
         />
       </Stack>
     </CardActions>
