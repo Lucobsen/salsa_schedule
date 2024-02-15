@@ -1,11 +1,25 @@
-import { getFestivals } from "@/app/lib/actions";
+import { Festival, getFestivals } from "@/app/lib/actions";
 import FestivalItem from "../FestivalItem/FestivalItem";
-import { Skeleton, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
-const FestivalList = async () => {
+interface FestivalListProps {
+  style: string[] | string;
+  month: string[] | string;
+}
+
+const filterByStyle = (festivals: Festival[], style: string[] | string) =>
+  festivals.filter((festival) => {
+    if (!style) return true;
+
+    return typeof style === "string"
+      ? festival.styles.includes(style)
+      : style.some((value) => festival.styles.includes(value));
+  });
+
+const FestivalList = async ({ style, month }: FestivalListProps) => {
   const festivals = await getFestivals();
 
-  const items = festivals.map((fest) => (
+  const items = filterByStyle(festivals, style).map((fest) => (
     <FestivalItem key={fest.name} {...fest} />
   ));
 

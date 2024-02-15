@@ -1,12 +1,23 @@
 "use client";
 
-import { AppBar, Toolbar, Box, Typography, Fab, Stack } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Typography,
+  Fab,
+  Stack,
+  Collapse,
+} from "@mui/material";
 import { useState } from "react";
 import AddFestivalDialog from "../AddFestivalDialog/AddFestivalDialog";
 import AddIcon from "@mui/icons-material/Add";
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import FestivalFilters from "../FestivalFilters/FestivalFilters";
 
 const NavBar = () => {
   const [showDialog, setShowDialog] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
     <>
@@ -29,8 +40,20 @@ const NavBar = () => {
               >
                 <AddIcon />
               </Fab>
+
+              <Fab
+                size="small"
+                onClick={() => setShowFilters(!showFilters)}
+                title="filter festivals"
+              >
+                <FilterListOutlinedIcon />
+              </Fab>
             </Stack>
           </Toolbar>
+
+          <Collapse in={showFilters} timeout="auto" unmountOnExit>
+            <FestivalFilters />
+          </Collapse>
         </AppBar>
       </Box>
 
