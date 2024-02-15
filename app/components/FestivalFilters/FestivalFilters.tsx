@@ -5,18 +5,16 @@ import {
   Checkbox,
   FormControlLabel,
   Stack,
-  Divider,
 } from "@mui/material";
-
-interface FestivalFiltersProps {
-  filterFestivals: (value: string) => void;
-}
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const CheckboxItem = ({
   label,
   onCheckedChange,
+  isChecked,
 }: {
   label: string;
+  isChecked?: boolean;
   onCheckedChange: () => void;
 }) => (
   <FormControlLabel
@@ -25,6 +23,7 @@ const CheckboxItem = ({
     control={
       <Checkbox
         size="small"
+        checked={isChecked}
         sx={{
           color: "#fff",
           "&.Mui-checked": {
@@ -37,61 +36,101 @@ const CheckboxItem = ({
   />
 );
 
-const FestivalFilters = ({ filterFestivals }: FestivalFiltersProps) => (
-  <Card
-    sx={{
-      minHeight: 100,
-      maxHeight: 300,
-      maxWidth: "100%",
-      borderTopRightRadius: 0,
-      borderTopLeftRadius: 0,
-      border: "2px solid #fff",
-      backgroundColor: "#1976d2",
-      borderTopStyle: "none",
-    }}
-    raised
-  >
-    <CardActions sx={{ ml: 1.5 }}>
-      <Stack>
-        <Typography sx={{ color: "#fff" }}>Dance Styles</Typography>
-        <CheckboxItem
-          label="Salsa"
-          onCheckedChange={() => filterFestivals("salsa")}
-        />
-        <CheckboxItem
-          label="Bachata"
-          onCheckedChange={() => filterFestivals("bachata")}
-        />
-        <CheckboxItem
-          label="Kizomba"
-          onCheckedChange={() => filterFestivals("kizomba")}
-        />
-      </Stack>
+const FestivalFilters = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-      <Divider
-        orientation="vertical"
-        variant="middle"
-        flexItem
-        sx={{ borderColor: "#fff" }}
-      />
+  const setUrlSearchParams = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams);
+    const paramExists = params.has(key, value);
 
-      <Stack>
-        <Typography sx={{ color: "#fff" }}>Months</Typography>
-        <CheckboxItem
-          label="March"
-          onCheckedChange={() => filterFestivals("march")}
+    if (value && !paramExists) {
+      params.append(key, value);
+    } else {
+      params.delete(key, value);
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  return (
+    <Card
+      sx={{
+        minHeight: 100,
+        maxHeight: 300,
+        maxWidth: "100%",
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+        border: "2px solid #fff",
+        backgroundColor: "#1976d2",
+        borderTopStyle: "none",
+      }}
+      raised
+    >
+      <CardActions sx={{ ml: 1.5 }}>
+        <Stack>
+          <Typography sx={{ color: "#fff" }}>Dance Styles</Typography>
+          <CheckboxItem
+            label="Salsa"
+            isChecked={searchParams
+              .getAll("style")
+              ?.toString()
+              .includes("salsa")}
+            onCheckedChange={() => setUrlSearchParams("style", "salsa")}
+          />
+          <CheckboxItem
+            label="Bachata"
+            isChecked={searchParams
+              .getAll("style")
+              ?.toString()
+              .includes("bachata")}
+            onCheckedChange={() => setUrlSearchParams("style", "bachata")}
+          />
+          <CheckboxItem
+            label="Kizomba"
+            isChecked={searchParams
+              .getAll("style")
+              ?.toString()
+              .includes("kizomba")}
+            onCheckedChange={() => setUrlSearchParams("style", "kizomba")}
+          />
+        </Stack>
+
+        {/* <Divider
+          orientation="vertical"
+          variant="middle"
+          flexItem
+          sx={{ borderColor: "#fff" }}
         />
-        <CheckboxItem
-          label="April"
-          onCheckedChange={() => filterFestivals("april")}
-        />
-        <CheckboxItem
-          label="May"
-          onCheckedChange={() => filterFestivals("may")}
-        />
-      </Stack>
-    </CardActions>
-  </Card>
-);
+
+        <Stack>
+          <Typography sx={{ color: "#fff" }}>Months</Typography>
+          <CheckboxItem
+            label="March"
+            isChecked={searchParams
+              .getAll("month")
+              ?.toString()
+              .includes("march")}
+            onCheckedChange={() => setUrlSearchParams("month", "march")}
+          />
+          <CheckboxItem
+            label="April"
+            isChecked={searchParams
+              .getAll("month")
+              ?.toString()
+              .includes("april")}
+            onCheckedChange={() => setUrlSearchParams("month", "april")}
+          />
+          <CheckboxItem
+            label="May"
+            isChecked={searchParams.getAll("month")?.toString().includes("may")}
+            onCheckedChange={() => setUrlSearchParams("month", "may")}
+          />
+        </Stack> */}
+      </CardActions>
+    </Card>
+  );
+};
 
 export default FestivalFilters;

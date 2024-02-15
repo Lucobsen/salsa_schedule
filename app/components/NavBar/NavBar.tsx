@@ -52,15 +52,7 @@ const NavBar = () => {
           </Toolbar>
 
           <Collapse in={showFilters} timeout="auto" unmountOnExit>
-            <FestivalFilters
-              filterFestivals={(value) =>
-                console.log(
-                  "%cNavBar.tsx line:55 value",
-                  "color: #007acc;",
-                  value
-                )
-              }
-            />
+            <FestivalFilters />
           </Collapse>
         </AppBar>
       </Box>
