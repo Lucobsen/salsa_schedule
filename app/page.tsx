@@ -10,7 +10,8 @@ const Page = ({
 }: {
   searchParams?: {
     style?: string[] | string;
-    month?: string[] | string;
+    startDate?: string;
+    endDate?: string;
   };
 }) => (
   <main className={styles.main}>
@@ -18,7 +19,8 @@ const Page = ({
       <ErrorBoundary fallback={<Errorer />}>
         <FestivalList
           style={searchParams?.style || ""}
-          month={searchParams?.month || ""}
+          startDate={searchParams?.startDate}
+          endDate={searchParams?.endDate}
         />
       </ErrorBoundary>
     </Suspense>

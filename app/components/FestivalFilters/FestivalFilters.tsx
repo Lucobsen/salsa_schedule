@@ -5,6 +5,8 @@ import {
   Checkbox,
   FormControlLabel,
   Stack,
+  Divider,
+  OutlinedInput,
 } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -54,6 +56,18 @@ const FestivalFilters = () => {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const setUrlDateSearchParams = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <Card
       sx={{
@@ -97,7 +111,7 @@ const FestivalFilters = () => {
           />
         </Stack>
 
-        {/* <Divider
+        <Divider
           orientation="vertical"
           variant="middle"
           flexItem
@@ -105,29 +119,32 @@ const FestivalFilters = () => {
         />
 
         <Stack>
-          <Typography sx={{ color: "#fff" }}>Months</Typography>
-          <CheckboxItem
-            label="March"
-            isChecked={searchParams
-              .getAll("month")
-              ?.toString()
-              .includes("march")}
-            onCheckedChange={() => setUrlSearchParams("month", "march")}
+          <Typography sx={{ color: "#fff" }}>Dates</Typography>
+          <OutlinedInput
+            name={"startDateFilter"}
+            fullWidth
+            id={"startDateFilter"}
+            size="medium"
+            required
+            type="date"
+            value={searchParams.get("startDate") ?? ""}
+            onChange={({ target }) =>
+              setUrlDateSearchParams("startDate", target.value)
+            }
           />
-          <CheckboxItem
-            label="April"
-            isChecked={searchParams
-              .getAll("month")
-              ?.toString()
-              .includes("april")}
-            onCheckedChange={() => setUrlSearchParams("month", "april")}
+          <OutlinedInput
+            name={"endDateFilter"}
+            fullWidth
+            id={"endDateFilter"}
+            size="medium"
+            required
+            type="date"
+            value={searchParams.get("endDate") ?? ""}
+            onChange={({ target }) =>
+              setUrlDateSearchParams("endDate", target.value)
+            }
           />
-          <CheckboxItem
-            label="May"
-            isChecked={searchParams.getAll("month")?.toString().includes("may")}
-            onCheckedChange={() => setUrlSearchParams("month", "may")}
-          />
-        </Stack> */}
+        </Stack>
       </CardActions>
     </Card>
   );
