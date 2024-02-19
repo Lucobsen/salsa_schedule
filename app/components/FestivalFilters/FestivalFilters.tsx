@@ -121,11 +121,10 @@ const FestivalFilters = () => {
         <Stack>
           <Typography sx={{ color: "#fff" }}>Dates</Typography>
           <OutlinedInput
+            sx={{ color: "#fff", border: "1px solid #fff" }}
             name={"startDateFilter"}
-            fullWidth
             id={"startDateFilter"}
             size="medium"
-            required
             type="date"
             value={searchParams.get("startDate") ?? ""}
             onChange={({ target }) =>
@@ -133,11 +132,10 @@ const FestivalFilters = () => {
             }
           />
           <OutlinedInput
+            sx={{ color: "#fff", border: "1px solid #fff" }}
             name={"endDateFilter"}
-            fullWidth
             id={"endDateFilter"}
             size="medium"
-            required
             type="date"
             value={searchParams.get("endDate") ?? ""}
             onChange={({ target }) =>
