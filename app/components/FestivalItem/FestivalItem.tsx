@@ -22,6 +22,7 @@ const FestivalItem = ({
       p: 2,
       textTransform: "uppercase",
       width: "100%",
+      maxWidth: "800px",
 
       "&:hover": {
         boxShadow: "0 0 10px 2px #fff",
