@@ -8,14 +8,17 @@ import {
   Fab,
   Stack,
   Collapse,
+  Badge,
 } from "@mui/material";
 import { useState } from "react";
 import AddFestivalDialog from "../AddFestivalDialog/AddFestivalDialog";
 import AddIcon from "@mui/icons-material/Add";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FestivalFilters from "../FestivalFilters/FestivalFilters";
+import { useSearchParams } from "next/navigation";
 
 const NavBar = () => {
+  const searchParams = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -46,7 +49,9 @@ const NavBar = () => {
                 onClick={() => setShowFilters(!showFilters)}
                 title="filter festivals"
               >
-                <FilterListOutlinedIcon />
+                <Badge badgeContent={searchParams.size} color="error">
+                  <FilterListOutlinedIcon />
+                </Badge>
               </Fab>
             </Stack>
           </Toolbar>
