@@ -2,41 +2,13 @@ import {
   Typography,
   Card,
   CardActions,
-  Checkbox,
-  FormControlLabel,
   Stack,
   Divider,
   OutlinedInput,
+  Button,
 } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-const CheckboxItem = ({
-  label,
-  onCheckedChange,
-  isChecked,
-}: {
-  label: string;
-  isChecked?: boolean;
-  onCheckedChange: () => void;
-}) => (
-  <FormControlLabel
-    sx={{ color: "#fff" }}
-    label={label}
-    control={
-      <Checkbox
-        size="small"
-        checked={isChecked}
-        sx={{
-          color: "#fff",
-          "&.Mui-checked": {
-            color: "#fff",
-          },
-        }}
-        onChange={onCheckedChange}
-      />
-    }
-  />
-);
+import { FilterItem } from "./FilterItem";
 
 const FestivalFilters = () => {
   const searchParams = useSearchParams();
@@ -68,6 +40,15 @@ const FestivalFilters = () => {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const clearFilters = () => {
+    const params = new URLSearchParams();
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const isFilterItemChecked = (key: string) =>
+    searchParams.getAll("style")?.toString().includes(key);
+
   return (
     <Card
       sx={{
@@ -85,28 +66,19 @@ const FestivalFilters = () => {
       <CardActions sx={{ ml: 1.5 }}>
         <Stack>
           <Typography sx={{ color: "#fff" }}>Dance Styles</Typography>
-          <CheckboxItem
+          <FilterItem
             label="Salsa"
-            isChecked={searchParams
-              .getAll("style")
-              ?.toString()
-              .includes("salsa")}
+            isChecked={isFilterItemChecked("salsa")}
             onCheckedChange={() => setUrlSearchParams("style", "salsa")}
           />
-          <CheckboxItem
+          <FilterItem
             label="Bachata"
-            isChecked={searchParams
-              .getAll("style")
-              ?.toString()
-              .includes("bachata")}
+            isChecked={isFilterItemChecked("bachata")}
             onCheckedChange={() => setUrlSearchParams("style", "bachata")}
           />
-          <CheckboxItem
+          <FilterItem
             label="Kizomba"
-            isChecked={searchParams
-              .getAll("style")
-              ?.toString()
-              .includes("kizomba")}
+            isChecked={isFilterItemChecked("kizomba")}
             onCheckedChange={() => setUrlSearchParams("style", "kizomba")}
           />
         </Stack>
@@ -121,10 +93,10 @@ const FestivalFilters = () => {
         <Stack>
           <Typography sx={{ color: "#fff" }}>Dates</Typography>
           <OutlinedInput
-            sx={{ color: "#fff", border: "1px solid #fff" }}
+            sx={{ color: "#fff", border: "1px solid #fff", mb: 2 }}
             name={"startDateFilter"}
             id={"startDateFilter"}
-            size="medium"
+            size="small"
             type="date"
             value={searchParams.get("startDate") ?? ""}
             onChange={({ target }) =>
@@ -132,10 +104,10 @@ const FestivalFilters = () => {
             }
           />
           <OutlinedInput
-            sx={{ color: "#fff", border: "1px solid #fff" }}
+            sx={{ color: "#fff", border: "1px solid #fff", mb: 2 }}
             name={"endDateFilter"}
             id={"endDateFilter"}
-            size="medium"
+            size="small"
             type="date"
             value={searchParams.get("endDate") ?? ""}
             onChange={({ target }) =>
@@ -143,6 +115,22 @@ const FestivalFilters = () => {
             }
           />
         </Stack>
+
+        <Divider
+          orientation="vertical"
+          variant="middle"
+          flexItem
+          sx={{ borderColor: "#fff" }}
+        />
+
+        <Button
+          variant="contained"
+          size="small"
+          sx={{ border: "1px solid #fff" }}
+          onClick={() => clearFilters()}
+        >
+          Clear All
+        </Button>
       </CardActions>
     </Card>
   );
